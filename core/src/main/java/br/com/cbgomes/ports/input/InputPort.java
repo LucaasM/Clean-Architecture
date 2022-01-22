@@ -8,8 +8,11 @@ import java.util.List;
 
 public interface InputPort {
 
-    public HospitalOutputPort save(HospitalInputPort hospitalInputPort);
+    HospitalOutputPort save(HospitalInputPort hospitalInputPort);
 
-    public List<HospitalOutputPort> listAll();
+    List<HospitalOutputPort> listAll();
 
+    Void remove(Long id);
+
+    Void atualizacao(Long id, HospitalInputPort hospitalInputPort);
 }

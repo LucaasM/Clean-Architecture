@@ -8,6 +8,7 @@ import br.com.cbgomes.response.HospitalResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/hospitais")
@@ -26,7 +27,20 @@ public class HospitalController {
     }
 
     @GetMapping
-    public List<HospitalOutputPort> listAll() {
-        return inputPort.listAll();
+    public List<HospitalResponse> listAll() {
+        return inputPort.listAll().stream().map(HospitalResponse::convertHospitalResponse).collect(Collectors.toList());
     }
+
+    @DeleteMapping(path = "/{id}")
+    public Void remove(@PathVariable Long id){
+        this.inputPort.remove(id);
+        return null;
+    }
+
+    @PostMapping(path = "/atualizacao/{id}")
+    public Void atualizacao(@PathVariable Long id, @RequestBody HospitalRequest request){
+        this.inputPort.atualizacao(id, HospitalRequest.convertHospitalInputPort(request));
+        return null;
+    }
+
 }

@@ -32,6 +32,7 @@ public class HospitalEntity {
     @JoinColumn ( name = "localizacao_ID" )
     private LocalizacaoEntity localizacao;
 
+    private String ocupacao;
 
     public static HospitalEntity converteHospitalEntity(HospitalOutputPort hospitalOutputPort) {
 
@@ -47,6 +48,7 @@ public class HospitalEntity {
                 .cnpj(hospitalOutputPort.getCnpj())
                 .endereco(hospitalOutputPort.getEndereco())
                 .localizacao(localizacao)
+                .ocupacao(hospitalOutputPort.getOcupacao())
                 .build();
 
     }
@@ -65,31 +67,8 @@ public class HospitalEntity {
                 .cnpj(hospitalEntity.getCnpj())
                 .endereco(hospitalEntity.getEndereco())
                 .localizacao(localizacao)
+                .ocupacao(hospitalEntity.getOcupacao())
                 .build();
 
-    }
-
-    public static List<HospitalOutputPort> convertListHospitalOutputPort(List<HospitalEntity> hospitalEntity) {
-
-        List<HospitalOutputPort> hospitalOutputPorts = new ArrayList<>();
-
-        for (var value: hospitalEntity) {
-
-            LocalizacaoOutputPort localizacaoOutputPort = LocalizacaoOutputPort.builder()
-                    .id(value.localizacao.getId())
-                    .latitude(value.localizacao.getLatitude())
-                    .longitude(value.localizacao.getLongitude())
-                    .build();
-
-            HospitalOutputPort hospitalOutputPort = HospitalOutputPort.builder()
-                    .id(value.id)
-                    .nome(value.getNome())
-                    .cnpj(value.getCnpj())
-                    .endereco(value.getEndereco())
-                    .localizacao(localizacaoOutputPort).build();
-
-            hospitalOutputPorts.add(hospitalOutputPort);
-        }
-        return hospitalOutputPorts;
     }
 }

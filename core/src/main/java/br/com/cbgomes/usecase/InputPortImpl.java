@@ -27,5 +27,17 @@ public class InputPortImpl implements InputPort {
         return outputPort.listAll();
     }
 
+    @Override
+    public Void remove(Long id) {
+        this.outputPort.remove(id);
+        return null;
+    }
+
+    @Override
+    public Void atualizacao(Long id, HospitalInputPort hospitalInputPort) {
+        this.outputPort.atualizacao(id, HospitalInputPort.convertHospitalOutputPort(hospitalInputPort));
+        return null;
+    }
+
 
 }

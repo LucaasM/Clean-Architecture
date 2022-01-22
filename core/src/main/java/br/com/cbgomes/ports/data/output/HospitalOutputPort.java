@@ -12,4 +12,5 @@ public class HospitalOutputPort {
     private String cnpj;
     private String endereco;
     private LocalizacaoOutputPort localizacao;
+    private String ocupacao;
 }

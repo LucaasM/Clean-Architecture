@@ -13,6 +13,7 @@ public class HospitalInputPort {
     private String cnpj;
     private String endereco;
     private LocalizacaoInputPort localizacao;
+    private String ocupacao;
 
 
     public static HospitalOutputPort convertHospitalOutputPort(HospitalInputPort hospitalInputPort) {
